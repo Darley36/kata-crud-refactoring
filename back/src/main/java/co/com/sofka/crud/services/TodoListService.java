@@ -1,5 +1,6 @@
 package co.com.sofka.crud.services;
 
+import co.com.sofka.crud.DTO.TodoListDTO;
 import co.com.sofka.crud.entities.Todo;
 import co.com.sofka.crud.entities.TodoList;
 import co.com.sofka.crud.repository.TodoListRepository;
@@ -25,8 +26,13 @@ public class TodoListService {
         return todos;
     }
 
-    public TodoList save(TodoList todolist){
-        return repository.save(todolist);
+    public TodoList save(TodoListDTO todolistDTO){
+        TodoList todolist = new TodoList();
+        todolist.setListName(todolistDTO.getListName());
+        //todolist.setListId(todolistDTO.getListId());
+        Long idList = repository.save(todolist).getListId();
+        todolist.setListId(idList);
+        return todolist;
     }
 
     public void delete(Long id){

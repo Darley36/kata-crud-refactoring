@@ -20,10 +20,8 @@ public class TodoListController {
 
     @PostMapping(value = "api/todolist")
     public TodoList save(@RequestBody TodoListDTO todoListDTO){
-        TodoList todolist = new TodoList();
-        todolist.setListName(todoListDTO.getListName());
-        todolist.setListId(todoListDTO.getListId());
-        return serviceList.save(todolist);
+        return serviceList.save(todoListDTO);
     }
+
 
 }
