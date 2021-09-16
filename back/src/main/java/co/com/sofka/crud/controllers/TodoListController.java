@@ -1,5 +1,6 @@
 package co.com.sofka.crud.controllers;
 
+import co.com.sofka.crud.DTO.TodoListDTO;
 import co.com.sofka.crud.entities.Todo;
 import co.com.sofka.crud.entities.TodoList;
 import co.com.sofka.crud.services.TodoListService;
@@ -18,8 +19,11 @@ public class TodoListController {
     }
 
     @PostMapping(value = "api/todolist")
-    public TodoList save(@RequestBody TodoList todoList){
-        return serviceList.save(todoList);
+    public TodoList save(@RequestBody TodoListDTO todoListDTO){
+        TodoList todolist = new TodoList();
+        todolist.setListName(todoListDTO.getListName());
+        todolist.setListId(todoListDTO.getListId());
+        return serviceList.save(todolist);
     }
 
 }
