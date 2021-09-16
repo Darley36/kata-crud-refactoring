@@ -2,6 +2,7 @@ package co.com.sofka.crud.services;
 
 import co.com.sofka.crud.repository.TodoRepository;
 import co.com.sofka.crud.entities.Todo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Service
 public class TodoService {
+
+    private ModelMapper mapper;
 
     @Autowired
     private TodoRepository repository;
