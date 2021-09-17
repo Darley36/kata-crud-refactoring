@@ -33,6 +33,10 @@ export function reducer(state, action) {
         const todoUp = state.todo.list;
         todoUp.push(action.item);
         return { ...state, todo: {list: todoUp, item: {}} }
+      case 'create-todolist':
+          const savetodolist = state.TodoList.list;
+          savetodolist.push(action.item);
+          return{...state, TodoList:{list:savetodolist}}
       default:
         return state;
     }

@@ -2,7 +2,7 @@ import React, {useContext,useEffect} from "react";
 import Store from "./CompStore";
 
 const HOST_API = "http://localhost:8080/api";
-const List = () => {
+const TaskList = () => {
     const { dispatch, state: { todo } } = useContext(Store);
     const currentList = todo.list;
   
@@ -73,4 +73,4 @@ const List = () => {
     </div>
   }
 
-  export default List;
+  export default TaskList;
