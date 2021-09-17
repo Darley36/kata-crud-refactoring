@@ -58,7 +58,6 @@ public class TodoListService {
     //Agregar nuevas tareas en cierta lista
     public TodoDTO saveTodoByListId(Long idList, TodoDTO todoDTO){
         TodoList todoList = get(idList);
-        //TodoList todoList = mapper.map(todoListDTO, TodoList.class);
 
         Todo todo = mapper.map(todoDTO, Todo.class);
 
@@ -107,5 +106,11 @@ public class TodoListService {
         todoListDTO.setListName(todoList.getListName());
         todoListDTO.setTodoList(todoList.getTodoList());*/
         return todoList;
+    }
+
+    //Eliminar Todo
+    public void deleteTodoById(Long id){
+        var todo = todoRepository.findById(id).orElseThrow();
+        todoRepository.delete(todo);
     }
 }

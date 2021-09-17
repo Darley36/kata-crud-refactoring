@@ -25,7 +25,12 @@ public class TodoService {
     }
 
     public void delete(Long id){
-        repository.delete(get(id));
+        try {
+            repository.deleteById(id);
+        }catch (Exception e){
+            e.getMessage();
+            throw new RuntimeException("No se elimino correctamente");
+        }
     }
 
     public Todo get(Long id){

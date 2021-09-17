@@ -1,5 +1,8 @@
 package co.com.sofka.crud.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +13,8 @@ public class TodoList {
     private Long listId;
     private String listName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "groupListId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Todo> todoList;
 
     public List<Todo> getTodoList() {

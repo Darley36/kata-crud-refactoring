@@ -21,7 +21,7 @@ public class TodoListController {
         return serviceList.getAllList();
     }
 
-    @GetMapping(value = "api/{listid}/todo")
+    @GetMapping(value = "api/{listid}/todolist")
     public List<Todo> getTodoByListId(@PathVariable("listid") Long listId){
         return serviceList.getAllTodoByIdList(listId);
     }
@@ -46,7 +46,7 @@ public class TodoListController {
     }
 
     //no se usa
-    @GetMapping(value = "api/{listid}/todolist")
+    @GetMapping(value = "api/{listid}/todolistbyid")
     public TodoList getListById(@PathVariable("listid") Long listId){
         return serviceList.get(listId);
     }
@@ -64,6 +64,13 @@ public class TodoListController {
     @PostMapping(value = "api/{listid}/todolist")
     public TodoDTO saveTodoByListId(@PathVariable("listid")  Long listId, @RequestBody TodoDTO todoDTO){
         return serviceList.saveTodoByListId(listId,todoDTO);
+    }
+
+    //Eliminar todo
+    @DeleteMapping(value = "api/{id}/todotodo")
+    public void delete(@PathVariable("id")Long id){
+
+        serviceList.deleteTodoById(id);
     }
 
 
