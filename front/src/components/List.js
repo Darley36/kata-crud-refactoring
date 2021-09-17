@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext,useEffect} from "react";
 import Store from "./CompStore";
 
 const HOST_API = "http://localhost:8080/api";

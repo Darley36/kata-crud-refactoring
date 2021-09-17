@@ -1,9 +1,8 @@
 import React, { createContext } from "react";
 
 
-const initialState = {
+export const initialState = {
     todo: { list: [], item: {} }
   };
-  const Store = createContext(initialState)
   export const Store = createContext(initialState)
   export default Store;
