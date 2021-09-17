@@ -1,5 +1,6 @@
 package co.com.sofka.crud.controllers;
 
+import co.com.sofka.crud.DTO.TodoDTO;
 import co.com.sofka.crud.DTO.TodoListDTO;
 import co.com.sofka.crud.entities.Todo;
 import co.com.sofka.crud.entities.TodoList;
@@ -22,7 +23,7 @@ public class TodoListController {
 
     @GetMapping(value = "api/{listid}/todo")
     public List<Todo> getTodoByListId(@PathVariable("listid") Long listId){
-        return serviceList.getTodo(listId);
+        return serviceList.getAllTodoByIdList(listId);
     }
 
     @PostMapping(value = "api/todolist")
@@ -30,6 +31,7 @@ public class TodoListController {
         return serviceList.save(todoListDTO);
     }
 
+    //no se usa
     @PutMapping(value = "api/todolist")
     public TodoListDTO updatelist(@RequestBody TodoListDTO todoListDTO){
         if(todoListDTO.getListId() != null){
@@ -39,13 +41,30 @@ public class TodoListController {
     }
 
     @DeleteMapping(value = "api/{listid}/todolist")
-    public void delete(@PathVariable("listid")Long listId){
+    public void deleteList(@PathVariable("listid")Long listId){
         serviceList.deleteList(listId);
     }
 
+    //no se usa
     @GetMapping(value = "api/{listid}/todolist")
-    public TodoListDTO getListById(@PathVariable("listid") Long listId){
+    public TodoList getListById(@PathVariable("listid") Long listId){
         return serviceList.get(listId);
     }
+
+    //Metodos que deben ir en el servicio de Todo
+    //actualizar Todo
+    @PutMapping(value = "api/{listid}/todolist")
+    public TodoDTO updateTodoByList(@PathVariable("listid") Long listId, @RequestBody TodoDTO todoDTO){
+        if (todoDTO.getId() != null) return serviceList.updateTodoByListId(listId, todoDTO);
+
+        throw new RuntimeException("The ID does not exist!");
+    }
+
+    //agregar todo
+    @PostMapping(value = "api/{listid}/todolist")
+    public TodoDTO saveTodoByListId(@PathVariable("listid")  Long listId, @RequestBody TodoDTO todoDTO){
+        return serviceList.saveTodoByListId(listId,todoDTO);
+    }
+
 
 }

@@ -10,13 +10,13 @@ public class TodoListDTO {
     private Long listId;
     private String listName;
 
-    private List<TodoDTO> todoListDTO;
+    private List<Todo> todoListDTO;
 
-    public List<TodoDTO> getTodoList() {
+    public List<Todo> getTodoList() {
         return todoListDTO;
     }
 
-    public void setTodoList(List<TodoDTO> todoListDTO) {
+    public void setTodoList(List<Todo> todoListDTO) {
         this.todoListDTO = todoListDTO;
     }
 
