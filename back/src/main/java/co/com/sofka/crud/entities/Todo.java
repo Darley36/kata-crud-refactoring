@@ -11,7 +11,6 @@ public class Todo {
     private Long id;
     private String name;
     private boolean completed;
-
     private Long groupListId;
 
 
