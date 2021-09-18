@@ -42,14 +42,18 @@ export function reducer(state, action) {
           allList.list =action.list;
           return{...state,todoList:allList}
       case 'delete-onelist':
-          const deletelist = state.todoList;
-          const listUpdate = deletelist.list.filter((item) => {
-              return item.id !== action.listId;
+          /*const deletelist = state.todoList;
+          const listUpdate = deletelist.list.filter((elemento) => {
+              return elemento.id !== action.listId;
           });
           deletelist.list = listUpdate;
-          return{...state, todoList:deletelist}
+          return{...state, todoList:deletelist}*/
+          const list =state.todoList.elements.filter((element) => {
+              return element.id !== action.listId;
+          });
+          return{...state, todoList:{element:list}}
       default:
         return state;
     }
   }
-  
+  //export default reducer

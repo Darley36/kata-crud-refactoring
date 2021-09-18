@@ -28,11 +28,11 @@ const TypeList = () => {
     };
     return <div>
       <div>
-        {currentList.map((element) => {
+        {todoList.list.map((element) => {
           return <div key={element.listId}>
           <fieldset>
             <legend>
-              {element.listName}
+              <input type="text" disabled={true} value={element.listName}/>
               <button onClick={() => onDelete(element.listId)}>Eliminar</button>
             </legend>
           </fieldset>
