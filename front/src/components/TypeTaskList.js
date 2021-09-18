@@ -28,7 +28,7 @@ const TypeList = () => {
     };
     return <div>
       <div>
-        {todoList.list.map((element) => {
+        {currentList.map((element) => {
           return <div key={element.listId}>
           <fieldset>
             <legend>
