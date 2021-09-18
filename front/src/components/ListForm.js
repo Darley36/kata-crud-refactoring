@@ -13,7 +13,7 @@ const ListForm = () => {
       event.preventDefault();
   
       const request = {
-        listName: state.listName,
+        listName: state.name,
         listId: null
       };
   
@@ -26,7 +26,7 @@ const ListForm = () => {
         }
       })
         .then(response => response.json())
-        .then((todo) => {
+        .then((todoList) => {
           dispatch({ type: "create-todolist", item: todoList });
           setState({ name: "" });
           formRef.current.reset();
@@ -38,7 +38,7 @@ const ListForm = () => {
         type="text"
         name="listName"
         placeholder="Ingresa la categoria de las tareas"
-        defaultValue={item.name}
+        required="required"
         onChange={(event) => {
           setState({...state, name: event.target.value })
         }}  ></input>

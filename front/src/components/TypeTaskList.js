@@ -1,5 +1,7 @@
 import React, {useContext,useEffect} from "react";
 import Store from "./CompStore";
+import TaskList from "./TaskList";
+import Form from "./Form";
 
 const HOST_API = "http://localhost:8080/api";
 const TypeList = () => {
@@ -36,6 +38,10 @@ const TypeList = () => {
               <button onClick={() => onDelete(element.listId)}>Eliminar</button>
             </legend>
           </fieldset>
+          <div>
+            <Form todolistid={element.listId}/>
+            <TaskList todolistid={element.listId}/>
+          </div>
           </div>
         })}
       </div>

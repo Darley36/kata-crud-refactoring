@@ -3,7 +3,7 @@ import Store from './CompStore';
 
 const HOST_API = "http://localhost:8080/api";
 
-const Form = () => {
+const Form = ({todolistid}) => {
     const formRef = useRef(null);
     const { dispatch, state: { todo } } = useContext(Store);
     const item = todo.item;
@@ -15,11 +15,12 @@ const Form = () => {
       const request = {
         name: state.name,
         id: null,
-        completed: false
+        completed: false,
+        groupListId:todolistid
       };
   
   
-      fetch(HOST_API + "/todo", {
+      fetch(HOST_API +"/todo", {
         method: "POST",
         body: JSON.stringify(request),
         headers: {
@@ -28,7 +29,7 @@ const Form = () => {
       })
         .then(response => response.json())
         .then((todo) => {
-          dispatch({ type: "add-item", item: todo });
+          dispatch({ type: "add-itembyid", item: todo});
           setState({ name: "" });
           formRef.current.reset();
         });
@@ -40,7 +41,8 @@ const Form = () => {
       const request = {
         name: state.name,
         id: item.id,
-        isCompleted: item.isCompleted
+        isCompleted: item.isCompleted,
+        groupListId:todolistid
       };
   
   
@@ -65,6 +67,7 @@ const Form = () => {
         name="name"
         placeholder="¿Qué piensas hacer hoy?"
         defaultValue={item.name}
+        required="required"
         onChange={(event) => {
           setState({ ...state, name: event.target.value })
         }}  ></input>

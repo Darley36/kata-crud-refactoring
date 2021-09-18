@@ -2,15 +2,15 @@ import React, {useContext,useEffect} from "react";
 import Store from "./CompStore";
 
 const HOST_API = "http://localhost:8080/api";
-const TaskList = () => {
+const TaskList = ({todolistid}) => {
     const { dispatch, state: { todo } } = useContext(Store);
     const currentList = todo.list;
   
     useEffect(() => {
-      fetch(HOST_API + "/todos")
+      fetch(HOST_API +"/todos")
         .then(response => response.json())
         .then((list) => {
-          dispatch({ type: "update-list", list })
+          dispatch({ type: "get-list", list, idCategoria:todolistid })
         })
     }, [dispatch]);
   
@@ -31,7 +31,8 @@ const TaskList = () => {
       const request = {
         name: todo.name,
         id: todo.id,
-        completed: event.target.checked
+        completed: event.target.checked,
+        groupListId:todolistid
       };
       fetch(HOST_API + "/todo", {
         method: "PUT",
@@ -60,6 +61,7 @@ const TaskList = () => {
         </thead>
         <tbody>
           {currentList.map((todo) => {
+            if(todo.groupListId === todolistid){
             return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
               <td>{todo.id}</td>
               <td>{todo.name}</td>
@@ -67,7 +69,7 @@ const TaskList = () => {
               <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
               <td><button onClick={() => onEdit(todo)}>Editar</button></td>
             </tr>
-          })}
+          }})}
         </tbody>
       </table>
     </div>

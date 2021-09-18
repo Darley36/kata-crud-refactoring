@@ -21,6 +21,10 @@ export function reducer(state, action) {
         });
         todoUpDelete.list = listUpdate;
         return { ...state, todo: todoUpDelete }
+      case 'get-list':
+        const todo = state.todo;
+        todo.list = action.list;
+        return { ...state, todo: todo }
       case 'update-list':
         const todoUpList = state.todo;
         todoUpList.list = action.list;
@@ -33,26 +37,29 @@ export function reducer(state, action) {
         const todoUp = state.todo.list;
         todoUp.push(action.item);
         return { ...state, todo: {list: todoUp, item: {}} }
+      case 'add-itembyid':
+        const todobyidlist = state.todo.list;
+        todobyidlist.push(action.item);
+        return { ...state, todo: {list: todobyidlist, item: {}} }
       case 'create-todolist':
           const savetodolist = state.todoList.list;
           savetodolist.push(action.item);
           return{...state, todoList:{list:savetodolist}}
       case 'get-alllist':
           const todoList = state.todoList;
-          console.log(todoList);
           todoList.list =action.list;
           return{...state,todoList:todoList}
       case 'delete-onelist':
-          /*const deletelist = state.todoList;
-          const listUpdate = deletelist.list.filter((elemento) => {
-              return elemento.id !== action.listId;
-          });
-          deletelist.list = listUpdate;
-          return{...state, todoList:deletelist}*/
-          const list =state.todoList.elements.filter((element) => {
+          const deletelist = state.todoList;
+          const listUpdateDelete = deletelist.list.filter((element) => {
               return element.id !== action.listId;
           });
-          return{...state, todoList:{element:list}}
+          deletelist.list = listUpdateDelete;
+          return{ ...state, todoList:deletelist }
+          /*const listdeleted =state.todoList.elements.filter((element) => {
+              return element.id !== action.listId;
+          });
+          return{...state, todoList}*/
       default:
         return state;
     }
