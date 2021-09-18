@@ -3,23 +3,23 @@ import Store from "./CompStore";
 
 const HOST_API = "http://localhost:8080/api";
 const TypeList = () => {
-    const { dispatch, state: { todolist, todo } } = useContext(Store);
-    const currentList = todolist.list;
+    const { dispatch, state: { todoList, todo } } = useContext(Store);
+    const currentList = todoList.list;
   
     useEffect(() => {
       fetch(HOST_API + "/todolist")
         .then(response => response.json())
         .then((list) => {
-          dispatch({ type: "update-list", list })
+          dispatch({ type: "get-alllist", list })
         })
     }, [dispatch]);
   
   
-    const onDelete = (listid) => {
-      fetch(HOST_API + "/" + listid + "/todo", {
+    const onDelete = (listId) => {
+      fetch(HOST_API + "/" + listId + "/todolist", {
         method: "DELETE"
       }).then((list) => {
-        dispatch({ type: "delete-item", listid })
+        dispatch({ type: "delete-onelist", listId })
       })
     };
   
@@ -28,13 +28,15 @@ const TypeList = () => {
     };
     return <div>
       <div>
-        {list.elements.map((Element) => {
+        {currentList.map((element) => {
+          return <div key={element.listId}>
           <fieldset>
             <legend>
-              {Element.listName}
-              <button onClick={() => onDelete(Element.listId)}>Eliminar</button>
+              {element.listName}
+              <button onClick={() => onDelete(element.listId)}>Eliminar</button>
             </legend>
           </fieldset>
+          </div>
         })}
       </div>
     </div>

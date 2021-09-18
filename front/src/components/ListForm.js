@@ -5,8 +5,8 @@ const HOST_API = "http://localhost:8080/api";
 
 const ListForm = () => {
     const formRef = useRef(null);
-    const { dispatch, state: { todo: todolist } } = useContext(Store);
-    const item = todolist.item;
+    const { dispatch, state: { todoList } } = useContext(Store);
+    const item = todoList.item;
     const [state, setState] = useState(item);
   
     const onAdd = (event) => {
@@ -27,7 +27,7 @@ const ListForm = () => {
       })
         .then(response => response.json())
         .then((todo) => {
-          dispatch({ type: "create-todolist", item: todolist });
+          dispatch({ type: "create-todolist", item: todoList });
           setState({ name: "" });
           formRef.current.reset();
         });

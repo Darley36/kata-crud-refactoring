@@ -34,9 +34,20 @@ export function reducer(state, action) {
         todoUp.push(action.item);
         return { ...state, todo: {list: todoUp, item: {}} }
       case 'create-todolist':
-          const savetodolist = state.TodoList.list;
+          const savetodolist = state.todoList.list;
           savetodolist.push(action.item);
-          return{...state, TodoList:{list:savetodolist}}
+          return{...state, todoList:{list:savetodolist}}
+      case 'get-alllist':
+          const allList = state.todoList;
+          allList.list =action.list;
+          return{...state,todoList:allList}
+      case 'delete-onelist':
+          const deletelist = state.todoList;
+          const listUpdate = deletelist.list.filter((item) => {
+              return item.id !== action.listId;
+          });
+          deletelist.list = listUpdate;
+          return{...state, todoList:deletelist}
       default:
         return state;
     }
