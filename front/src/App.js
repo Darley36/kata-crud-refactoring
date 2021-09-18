@@ -1,7 +1,4 @@
 import React, { useContext, useReducer, useEffect, useRef, useState, createContext } from 'react';
-import Form from './components/Form';
-import TaskList from './components/TaskList';
-//import { StoreProvider } from './components/StoreProvider';
 import ListForm from './components/ListForm';
 import TypeList from './components/TypeTaskList';
 import { StoreProvider } from './components/CompStore';
@@ -10,21 +7,21 @@ const HOST_API = "http://localhost:8080/api";
 
 function App() {
   return <StoreProvider>
-    <h3>Tasks</h3>
-    <div>
+    <blockquote className="blockquote text-center">
+      <h3>Tasks</h3>
+    </blockquote>
+    
+    <div className="container">
       <br/>
       <div>
-        <p>Category</p>
+        <h2>Category</h2>
         <ListForm/>
       </div>
       <br/>
     </div>
-    
-    {/*<Form />*/}
-    {/*<TaskList />*/}
-
-    {/*<ListForm/>*/}
-    <TypeList/>
+    <div className="container">
+      <TypeList/>
+    </div>
   </StoreProvider>
 }
 

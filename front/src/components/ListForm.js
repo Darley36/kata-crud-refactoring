@@ -42,7 +42,7 @@ const ListForm = () => {
         onChange={(event) => {
           setState({...state, name: event.target.value })
         }}  ></input>
-      {<button onClick={onAdd}>Crear nueva categoria</button>}
+      {<button className="btn btn-primary" onClick={onAdd}>Crear nueva categoria</button>}
     </form>
   }
   export default ListForm

@@ -35,7 +35,7 @@ const TypeList = () => {
           <fieldset>
             <legend>
               <input type="text" disabled={true} value={element.listName}/>
-              <button onClick={() => onDelete(element.listId)}>Eliminar</button>
+              <button type="button" className="btn btn-danger" onClick={() => onDelete(element.listId)}>Eliminar</button>
             </legend>
           </fieldset>
           <div>
