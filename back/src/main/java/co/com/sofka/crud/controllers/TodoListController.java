@@ -46,14 +46,13 @@ public class TodoListController {
         serviceList.deleteList(listId);
     }
 
-    //no se usa
+    //not used
     @GetMapping(value = "api/{listid}/todolistbyid")
     public TodoList getListById(@PathVariable("listid") Long listId){
         return serviceList.get(listId);
     }
 
-    //Metodos que deben ir en el servicio de Todo
-    //actualizar Todo
+    //should go in the Todo controller
     @PutMapping(value = "api/{listid}/todolist")
     public TodoDTO updateTodoByList(@PathVariable("listid") Long listId, @RequestBody TodoDTO todoDTO){
         if (todoDTO.getId() != null) return serviceList.updateTodoByListId(listId, todoDTO);
@@ -61,13 +60,13 @@ public class TodoListController {
         throw new RuntimeException("The ID does not exist!");
     }
 
-    //agregar todo
+
     @PostMapping(value = "api/{listid}/todolist")
     public TodoDTO saveTodoByListId(@PathVariable("listid")  Long listId, @RequestBody TodoDTO todoDTO){
         return serviceList.saveTodoByListId(listId,todoDTO);
     }
 
-    //Eliminar todo
+
     @DeleteMapping(value = "api/{id}/todotodo")
     public void delete(@PathVariable("id")Long id){
 

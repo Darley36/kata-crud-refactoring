@@ -29,7 +29,7 @@ public class TodoListService {
         this.todoRepository = todoRepository;
     }
 
-    //traer todas las listas
+
     public Iterable<TodoListDTO> getAllList(){
         Iterable<TodoList> todoList = repository.findAll();
         List<TodoListDTO> todoListDTO = new ArrayList<>();
@@ -40,14 +40,13 @@ public class TodoListService {
         return todoListDTO;
     }
 
-    //falta colocar el DTO
-    //es para traer la lista de los todos
+
     public List<Todo> getAllTodoByIdList(Long idGroupList){
         List<Todo> todos = todoRepository.getByGroupListId(idGroupList);
         return todos;
     }
 
-    //guardar una nueva lista
+
     public TodoListDTO save(TodoListDTO todoListDTO){
         TodoList todoList = mapper.map(todoListDTO,TodoList.class);
         Long idList = repository.save(todoList).getListId();
@@ -55,7 +54,7 @@ public class TodoListService {
         return todoListDTO;
     }
 
-    //Agregar nuevas tareas en cierta lista
+
     public TodoDTO saveTodoByListId(Long idList, TodoDTO todoDTO){
         TodoList todoList = get(idList);
 
@@ -73,10 +72,10 @@ public class TodoListService {
     }
 
 
-    // actualizar un todo de cierta lista
+
     public TodoDTO updateTodoByListId(Long idList, TodoDTO todoDTO){
         TodoList todoList = get(idList);
-        //TodoList todoList = mapper.map(todoListDTO, TodoList.class);
+
 
         List<Todo> fields = todoList.getTodoList();
 
@@ -92,23 +91,20 @@ public class TodoListService {
         return todoDTO;
     }
 
-    //Eliminar la lista
+
     public void deleteList(Long listId){
 
         repository.delete(repository.findById(listId).orElseThrow());
     }
 
-    //para traer una sola lista por su id
+
     public TodoList get(Long listId){
         TodoListDTO todoListDTO = new TodoListDTO();
         TodoList todoList = repository.findById(listId).orElseThrow();
-        /*todoListDTO.setListId(todoList.getListId());
-        todoListDTO.setListName(todoList.getListName());
-        todoListDTO.setTodoList(todoList.getTodoList());*/
         return todoList;
     }
 
-    //Eliminar Todo
+
     public void deleteTodoById(Long id){
         var todo = todoRepository.findById(id).orElseThrow();
         todoRepository.delete(todo);
